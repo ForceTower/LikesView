@@ -5,6 +5,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import dev.forcetower.likesview.BuildConfig
 import dev.forcetower.likesview.LikeApp
 import okhttp3.OkHttpClient
@@ -13,6 +15,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
+@InstallIn(ApplicationComponent::class)
 object AppModule {
     @Provides
     @Singleton
