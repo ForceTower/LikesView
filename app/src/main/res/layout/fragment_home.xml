@@ -15,10 +15,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true"
+            app:liftOnScroll="false"
             app:paddingTopSystemWindowInsets="@{true}"
-            app:paddingStartSystemWindowInsets="@{true}"
-            app:paddingEndSystemWindowInsets="@{true}"
+            app:elevation="0dp"
             style="@style/Widget.MaterialComponents.AppBarLayout.Surface">
 
             <LinearLayout
@@ -61,21 +60,10 @@
                 tools:listitem="@layout/item_profile_reel"/>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_medias"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="@integer/home_profile_media_column"
-            app:paddingStartSystemWindowInsets="@{true}"
-            app:paddingEndSystemWindowInsets="@{true}"
-            app:paddingBottomSystemWindowInsets="@{true}"
-            tools:listitem="@layout/item_profile_home_media"/>
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -1,8 +1,11 @@
 package dev.forcetower.likesview.core.source.local.dao
 
 import androidx.room.Dao
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import dev.forcetower.likesview.core.model.database.InstagramProfile
+import dev.forcetower.likesview.core.model.dto.InstagramProfilePartial
 import dev.forcetower.toolkit.database.dao.BaseDao
 import kotlinx.coroutines.flow.Flow
 
@@ -14,9 +17,25 @@ abstract class ProfileDao : BaseDao<InstagramProfile>() {
     @Query("SELECT * FROM InstagramProfile")
     abstract fun getAll(): Flow<List<InstagramProfile>>
 
+    @Query("SELECT * FROM InstagramProfile WHERE id = :userId")
+    abstract fun getById(userId: Long): Flow<InstagramProfile?>
+
+    @Query("SELECT * FROM InstagramProfile WHERE id = :userId")
+    abstract suspend fun getByIdDirect(userId: Long): InstagramProfile?
+
     @Query("UPDATE InstagramProfile SET selected = username = :username")
-    abstract fun markSelected(username: String)
+    abstract suspend fun markSelected(username: String)
 
     @Query("SELECT * FROM InstagramProfile WHERE selected = 1")
     abstract fun getCurrent(): Flow<InstagramProfile?>
+
+    @Update(entity = InstagramProfile::class, onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun update(partial: InstagramProfilePartial)
+
+    override suspend fun getValueByIDDirect(value: InstagramProfile): InstagramProfile? {
+        return getByUsernameDirect(value.username)
+    }
+
+    @Query("SELECT COUNT(*) FROM InstagramProfile")
+    abstract fun getCount(): Flow<Int>
 }

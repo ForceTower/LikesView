@@ -38,8 +38,13 @@ class AddProfileViewModel @ViewModelInject constructor(
     }
 
     override fun onAddProfileClick(user: InstagramUserSearch) {
-        _onProfileClick.value = Event(user)
+        // _onProfileClick.value = Event(user)
         _selectedProfile = user
+
+        viewModelScope.launch {
+            repository.addProfile(user)
+            _onProfileAdded.value = Event(user.username)
+        }
     }
 
     override fun onProfileAdded(username: String) {

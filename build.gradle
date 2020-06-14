@@ -12,6 +12,7 @@ buildscript {
         fragment = '1.2.5'
         swipe_refresh = "1.0.0"
         arch = "2.1.0"
+        view_pager = "1.0.0"
 
         // Architecture
         room = '2.2.5'

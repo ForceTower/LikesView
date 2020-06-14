@@ -25,7 +25,6 @@ class LauncherActivity : BaseActivity() {
         viewModel.launchDestination.observe(this, EventObserver {
             val intent = Intent(this, MainActivity::class.java)
             when (it) {
-                // fake a deep link to home
                 LaunchDestination.HOME -> {
                     val graph = NavInflater(this, PermissiveNavigatorProvider())
                         .inflate(R.navigation.home_graph)

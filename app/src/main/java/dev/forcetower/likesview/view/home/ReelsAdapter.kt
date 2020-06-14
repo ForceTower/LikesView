@@ -9,9 +9,9 @@ import dev.forcetower.likesview.core.model.database.InstagramProfile
 import dev.forcetower.likesview.databinding.ItemProfileReelBinding
 import dev.forcetower.toolkit.extensions.inflate
 
-class ProfilesAdapter(
+class ReelsAdapter(
     private val actions: HomeViewModel
-) : ListAdapter<InstagramProfile, ProfilesAdapter.ProfileHolder>(DiffCallback) {
+) : ListAdapter<InstagramProfile, ReelsAdapter.ProfileHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileHolder {
         return ProfileHolder(parent.inflate(R.layout.item_profile_reel))

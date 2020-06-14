@@ -11,4 +11,6 @@
     <string name="no_profile_selected">Selecione um perfil</string>
     <string name="instagram_verified_profile">Perfil Verificado</string>
     <string name="media_gallery_description">Galeria de fotos</string>
+    <string name="followers">seguidores</string>
+    <string name="following">seguindo</string>
 </resources>

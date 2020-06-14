@@ -23,9 +23,9 @@ interface InstagramAPI {
     ): ProfileFetchResult
 
     @GET("graphql/query")
-    fun getProfilePage(
+    suspend fun getProfilePage(
         @QueryMap(encoded = false) queryMap: Map<String, String>,
         @Query("query_hash") queryHash: String = "42323d64886122307be10013ad2dcc44"
-    ): Call<ProfileFetchResult>
+    ): ProfileFetchResult
 
 }

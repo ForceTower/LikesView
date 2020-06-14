@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="profile"
+            type="dev.forcetower.likesview.core.model.database.InstagramProfile" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:importantForAccessibility="no"
+            app:imageUrl="@{profile.pictureUrl}"
+            app:clipCircle="@{true}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/followers_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnBackground"
+            android:textFontWeight="600"
+            android:textSize="20sp"
+            app:textNumberWithK="@{profile.followersCount}"
+            app:layout_constraintBottom_toTopOf="@+id/followers_label"
+            app:layout_constraintEnd_toEndOf="@+id/followers_label"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/followers_label"
+            app:layout_constraintTop_toTopOf="@+id/user_image"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="22.1k" />
+
+        <TextView
+            android:id="@+id/followers_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/followers"
+            android:textColor="?attr/colorOnBackground"
+            android:textFontWeight="500"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/user_image"
+            app:layout_constraintEnd_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toBottomOf="@+id/followers_text" />
+
+        <TextView
+            android:id="@+id/following_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnBackground"
+            android:textFontWeight="600"
+            android:textSize="20sp"
+            app:textNumberWithK="@{profile.followingCount}"
+            app:layout_constraintBottom_toTopOf="@+id/following_label"
+            app:layout_constraintEnd_toEndOf="@+id/following_label"
+            app:layout_constraintStart_toStartOf="@+id/following_label"
+            app:layout_constraintTop_toTopOf="@+id/user_image"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="863" />
+
+        <TextView
+            android:id="@+id/following_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/following"
+            android:textColor="?attr/colorOnBackground"
+            android:textFontWeight="500"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/user_image"
+            app:layout_constraintStart_toEndOf="@+id/user_image"
+            app:layout_constraintTop_toBottomOf="@+id/following_text" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_common"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/spacing_common"
+            android:gravity="center"
+            android:text="@{profile.name}"
+            android:textAlignment="gravity"
+            android:textColor="?attr/colorOnBackground"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_image"
+            tools:text="Juliana Doe dos Santos Soares" />
+
+        <TextView
+            android:id="@+id/user_biography"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_common"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/spacing_common"
+            android:gravity="center"
+            android:text="@{profile.biography}"
+            android:textAlignment="gravity"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="14sp"
+            app:goneIf="@{profile.biography == null}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            tools:text=":) Isso é uma descrição completa do perfil.\n⬆️ O número máximo de caracteres são 150, incluíndo emojis\n⏳Estou testando o espaço máximo no layout ..!" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
