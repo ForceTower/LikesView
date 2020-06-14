@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="user"
+            type="dev.forcetower.likesview.core.model.dto.InstagramUserSearch" />
+        <variable
+            name="actions"
+            type="dev.forcetower.likesview.view.addprofile.AddProfileActions" />
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:background="#33FFFFFF"
+        android:onClick="@{() -> actions.onAddProfileClick(user)}"
+        app:roundedViewRadius="@{8}">
+
+        <ImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/spacing_common"
+            android:importantForAccessibility="no"
+            app:clipCircle="@{true}"
+            app:imageUrl="@{user.pictureUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{user.name}"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/user_avatar"
+            app:layout_constraintTop_toTopOf="@+id/user_avatar"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{@string/instagram_username_pattern(user.username)}"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:textFontWeight="600"
+            app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/user_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="\@forcetower" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

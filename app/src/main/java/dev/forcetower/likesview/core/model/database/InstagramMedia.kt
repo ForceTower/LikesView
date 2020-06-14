@@ -44,8 +44,6 @@ data class InstagramMedia (
     val pictureUrlSmall = thumbnailSrc ?: displayUrl
     @Ignore
     val isGallery = type == "GraphSidecar"
-    @Ignore
-    var profile: InstagramProfile? = null
 
     companion object {
         fun getMediaListFromProfileFetch(fetchResult: ProfileFetchResult, desiredWidth: Int, nextPage: String?): List<InstagramMedia> {

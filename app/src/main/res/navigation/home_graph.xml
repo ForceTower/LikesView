@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/home_graph.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_graph.xml"
+    app:startDestination="@id/onboarding">
 
-
+    <fragment
+        android:id="@+id/onboarding"
+        android:name="dev.forcetower.likesview.view.onboarding.OnboardingFragment"
+        android:label="Onboarding"
+        tools:layout="@layout/fragment_onboarding"/>
 </navigation>

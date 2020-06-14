@@ -29,58 +29,12 @@ data class InstagramProfile(
     val nextCachedPage: String?,
     val hasCachedNextPage: Boolean,
     val lastUpdate: Long,
-    var meanLikes: Int = 0,
+    val meanLikes: Int = 0,
     @ColumnInfo(name = "selected")
-    var isSelected: Boolean = false,
-    var lastChecked: Long = 0,
-    var insertedAt: Long = 0
+    val isSelected: Boolean = false,
+    val lastChecked: Long = 0,
+    val insertedAt: Long = 0
 ) {
-    fun merge(old: InstagramProfile?): InstagramProfile {
-        return InstagramProfile(
-            id,
-            username,
-            name,
-            pictureUrl,
-            pictureUrlHd,
-            biography,
-            followingCount,
-            followersCount,
-            postCount,
-            isPrivate,
-            isVerified,
-            nextCachedPage,
-            hasCachedNextPage,
-            lastUpdate,
-            meanLikes,
-            isSelected = old?.isSelected ?: isSelected,
-            lastChecked = old?.lastChecked ?: insertedAt,
-            insertedAt = old?.insertedAt ?: insertedAt
-        )
-    }
-
-    fun toIgMedia(): InstagramMedia {
-        return InstagramMedia(
-            1,
-            1,
-            "not",
-            "..",
-            "..",
-            0,
-            0,
-            null,
-            false,
-            null,
-            null,
-            1,
-            1,
-            0,
-            null,
-            InstagramMedia.GalleryContent.createDefault("...")
-        ).apply {
-            profile = this@InstagramProfile
-        }
-    }
-
     companion object {
         fun createFromFetch(fetchResult: ProfileFetchResult): InstagramProfile? {
             val user = fetchResult.graph?.user

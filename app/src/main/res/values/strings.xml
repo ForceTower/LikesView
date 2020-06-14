@@ -1,3 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="pt-BR">
     <string name="app_name">LikesView</string>
+    <string name="onboarding_welcome">Boas vindas ao LikesView</string>
+    <string name="onboarding_welcome_desc">Descubra a quantidade de likes das postagens do Instagram!</string>
+    <string name="onboarding_login">Vamos lá!</string>
+    <string name="add_profile_desc">Digite o nome do usuário que deseja visualizar as curtidas das postagens</string>
+    <string name="instagram_username_label">Usuário do Instagram</string>
+    <string name="instagram_username_hint">Digite o nome do usuário</string>
+    <string name="do_login_action">Ver curtidas</string>
+    <string name="instagram_username_pattern">\@%1$s</string>
 </resources>

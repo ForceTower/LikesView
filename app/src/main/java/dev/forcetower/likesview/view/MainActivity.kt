@@ -5,10 +5,12 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.R
 import dev.forcetower.likesview.databinding.ActivityMainBinding
 import dev.forcetower.toolkit.components.BaseActivity
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private val navController

@@ -5,20 +5,18 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.navigation.NavDestination
 import androidx.navigation.NavInflater
+import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.R
 import dev.forcetower.likesview.view.launcher.LaunchDestination
 import dev.forcetower.likesview.view.launcher.LauncherViewModel
 import dev.forcetower.toolkit.components.BaseActivity
-import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
 import dev.forcetower.toolkit.navigation.navigator.PermissiveNavigatorProvider
 import java.util.ArrayDeque
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class LauncherActivity : BaseActivity() {
-    @Inject
-    lateinit var factory: BaseViewModelFactory
-    private val viewModel by viewModels<LauncherViewModel> { factory }
+    private val viewModel by viewModels<LauncherViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
