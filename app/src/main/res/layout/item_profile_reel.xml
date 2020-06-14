@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="profile"
+            type="dev.forcetower.likesview.core.model.database.InstagramProfile" />
+        <variable
+            name="actions"
+            type="dev.forcetower.likesview.view.home.HomeActions" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="50dp"
+        android:layout_height="56dp"
+        android:onClick="@{() -> actions.onReelClicked(profile)}"
+        android:animateLayoutChanges="true"
+        app:selectedProfileMargin="@{profile.selected}">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:elevation="4dp"
+            android:contentDescription="@{profile.username}"
+            app:imageUrl="@{profile.pictureUrl}"
+            app:clipCircle="@{true}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"/>
+
+        <View
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:visibility="gone"
+            app:goneUnless="@{profile.selected}"
+            android:elevation="5dp"
+            android:background="@color/selectedProfileColor"
+            app:clipToCircle="@{true}"
+            app:layout_constraintBottom_toBottomOf="@id/user_image"
+            app:layout_constraintEnd_toEndOf="@id/user_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

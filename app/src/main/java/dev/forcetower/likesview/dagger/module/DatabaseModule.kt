@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.forcetower.likesview.core.source.local.LikeDB
 import javax.inject.Singleton
 
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 object DatabaseModule {
     @Provides
     @Singleton
-    fun provideDatabase(context: Context): LikeDB {
+    fun provideDatabase(@ApplicationContext context: Context): LikeDB {
         return Room.databaseBuilder(context, LikeDB::class.java, "likes.db").build()
     }
 }

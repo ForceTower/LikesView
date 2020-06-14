@@ -18,5 +18,18 @@
         android:id="@+id/add_profile"
         android:name="dev.forcetower.likesview.view.addprofile.AddProfileFragment"
         android:label="Add Profile"
-        tools:layout="@layout/fragment_add_profile"/>
+        tools:layout="@layout/fragment_add_profile">
+        <action
+            android:id="@+id/action_add_profile_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/home"
+        android:name="dev.forcetower.likesview.view.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_add_profile"
+            app:destination="@id/add_profile" />
+    </fragment>
 </navigation>

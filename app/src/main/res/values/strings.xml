@@ -8,4 +8,7 @@
     <string name="instagram_username_hint">Digite o nome do usuário</string>
     <string name="do_login_action">Ver curtidas</string>
     <string name="instagram_username_pattern">\@%1$s</string>
+    <string name="no_profile_selected">Selecione um perfil</string>
+    <string name="instagram_verified_profile">Perfil Verificado</string>
+    <string name="media_gallery_description">Galeria de fotos</string>
 </resources>

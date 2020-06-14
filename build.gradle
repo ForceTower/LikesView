@@ -9,14 +9,14 @@ buildscript {
         annotation = "1.1.0"
         exif_interface = "1.1.0"
         pallete = "1.0.0"
-        fragment = '1.2.4'
+        fragment = '1.2.5'
         swipe_refresh = "1.0.0"
         arch = "2.1.0"
 
         // Architecture
         room = '2.2.5'
         lifecycle = '2.2.0'
-        paging = '2.1.2'
+        paging = '3.0.0-alpha01'
         navigation = '2.2.2'
 
         // Dependency Injection
