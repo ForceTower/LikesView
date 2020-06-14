@@ -2,6 +2,12 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="actions"
+            type="dev.forcetower.likesview.view.addprofile.AddProfileActions" />
+    </data>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,7 +86,7 @@
                 android:layout_marginBottom="24dp"
                 android:text="@string/do_login_action"
                 android:enabled="@{!actions.loading}"
-                android:onClick="@{() -> actions.onLogin(actions.username)}"
+                android:onClick="@{() -> actions.onProfileAdded(actions.username)}"
                 app:goneIf="@{actions.loading}"
                 style="@style/Widget.LikesView.MaterialButton.Login"/>
         </LinearLayout>

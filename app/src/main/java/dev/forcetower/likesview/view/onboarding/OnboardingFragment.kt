@@ -25,6 +25,7 @@ class OnboardingFragment : BaseFragment(), OnboardingActions {
     }
 
     override fun onMoveToLogin() {
-//        findNavController().navigate()
+        val directions = OnboardingFragmentDirections.actionOnboardingToAddProfile()
+        findNavController().navigate(directions)
     }
 }

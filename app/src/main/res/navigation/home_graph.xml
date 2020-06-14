@@ -9,5 +9,14 @@
         android:id="@+id/onboarding"
         android:name="dev.forcetower.likesview.view.onboarding.OnboardingFragment"
         android:label="Onboarding"
-        tools:layout="@layout/fragment_onboarding"/>
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboarding_to_add_profile"
+            app:destination="@id/add_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/add_profile"
+        android:name="dev.forcetower.likesview.view.addprofile.AddProfileFragment"
+        android:label="Add Profile"
+        tools:layout="@layout/fragment_add_profile"/>
 </navigation>
