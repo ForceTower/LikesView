@@ -22,7 +22,7 @@ class InstagramMediaSource(
             if (next == null) {
                 val current = database.profile().getByIdDirect(userId)
                 Timber.d("Loading for current... $current")
-                if (current != null && (System.currentTimeMillis() - current.lastUpdate) > 300000) {
+                if (current != null && ((System.currentTimeMillis() - current.lastUpdate) > 300000 || current.followersCount == 0)) {
                     val page = service.getUser(current.username)
                     val profile = InstagramProfilePartial.createFromFetch(page)
                     Timber.d("Profile from fetch ${profile?.username} ${profile?.followersCount}")
