@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="pt-BR">
-    <string name="app_name">LikesView</string>
+    <string name="app_name">InstaLikes</string>
     <string name="onboarding_welcome">Boas vindas ao LikesView</string>
     <string name="onboarding_welcome_desc">Descubra a quantidade de likes das postagens do Instagram!</string>
     <string name="onboarding_login">Vamos lá!</string>
