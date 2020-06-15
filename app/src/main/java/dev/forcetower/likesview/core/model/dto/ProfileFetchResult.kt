@@ -2,7 +2,7 @@ package dev.forcetower.likesview.core.model.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ProfileFetchResult (
+data class ProfileFetchResult(
     @SerializedName("graphql")
     val graph: GraphUser?,
     val data: GraphUser?
@@ -52,7 +52,7 @@ data class GraphNode<T>(
     val node: T
 )
 
-data class MediaGraph (
+data class MediaGraph(
     val id: Long,
     @SerializedName("__typename")
     val type: String,
@@ -95,7 +95,7 @@ data class DimensionsResource(
     val height: Int
 )
 
-data class Owner (
+data class Owner(
     val id: Long,
     val username: String
 )

@@ -25,7 +25,7 @@ class SearchAdapter(
         init { binding.actions = actions }
     }
 
-    private object DiffCallback: DiffUtil.ItemCallback<InstagramUserSearch>() {
+    private object DiffCallback : DiffUtil.ItemCallback<InstagramUserSearch>() {
         override fun areItemsTheSame(
             oldItem: InstagramUserSearch,
             newItem: InstagramUserSearch

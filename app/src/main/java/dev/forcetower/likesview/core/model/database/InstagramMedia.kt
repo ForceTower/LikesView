@@ -7,9 +7,7 @@ import androidx.room.ForeignKey.NO_ACTION
 import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import dev.forcetower.likesview.core.model.database.InstagramMedia.GalleryContent.Companion.createDefault
-import com.google.gson.Gson
 import dev.forcetower.likesview.core.model.dto.MediaGraph
 import dev.forcetower.likesview.core.model.dto.ProfileFetchResult
 import java.util.Calendar
@@ -21,7 +19,7 @@ import kotlin.math.abs
 ], foreignKeys = [
     ForeignKey(entity = InstagramProfile::class, parentColumns = ["id"], childColumns = ["profileId"], onUpdate = NO_ACTION, onDelete = CASCADE)
 ])
-data class InstagramMedia (
+data class InstagramMedia(
     @PrimaryKey
     val id: Long,
     val profileId: Long,

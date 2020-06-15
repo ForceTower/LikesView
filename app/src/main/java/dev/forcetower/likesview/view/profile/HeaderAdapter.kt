@@ -18,7 +18,7 @@ class HeaderAdapter : ListAdapter<InstagramProfile, HeaderAdapter.Holder>(DiffCa
         holder.binding.profile = getItem(position)
     }
 
-    inner class Holder(val binding: ItemProfileHeaderBinding): RecyclerView.ViewHolder(binding.root)
+    inner class Holder(val binding: ItemProfileHeaderBinding) : RecyclerView.ViewHolder(binding.root)
 
     private object DiffCallback : DiffUtil.ItemCallback<InstagramProfile>() {
         override fun areItemsTheSame(
@@ -31,5 +31,4 @@ class HeaderAdapter : ListAdapter<InstagramProfile, HeaderAdapter.Holder>(DiffCa
             newItem: InstagramProfile
         ) = oldItem == newItem
     }
-
 }

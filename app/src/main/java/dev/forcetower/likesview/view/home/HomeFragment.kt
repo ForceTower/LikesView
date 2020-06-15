@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.MergeAdapter
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.core.model.database.InstagramProfile
 import dev.forcetower.likesview.databinding.FragmentHomeBinding
 import dev.forcetower.likesview.view.profile.ProfileFragmentAdapter
 import dev.forcetower.toolkit.components.BaseFragment
+import dev.forcetower.toolkit.lifecycle.EventObserver
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment() {
@@ -32,12 +35,15 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val add = AddProfileAdapter(viewModel)
         val reels = ReelsAdapter(viewModel)
+        val merge = MergeAdapter(add, reels)
+
         val profiles = ProfileFragmentAdapter(childFragmentManager, lifecycle)
 
         binding.run {
             recyclerReels.run {
-                adapter = reels
+                adapter = merge
                 itemAnimator?.run {
                     changeDuration = 0
                 }
@@ -67,6 +73,13 @@ class HomeFragment : BaseFragment() {
             currentList = it
             reels.submitList(it)
             profiles.submitList(it.map { user -> user.id })
+        })
+
+        viewModel.onAddProfile.observe(viewLifecycleOwner, EventObserver {
+            val directions = HomeFragmentDirections.actionHomeToAddProfile().apply {
+                fromHome = true
+            }
+            findNavController().navigate(directions)
         })
     }
 }

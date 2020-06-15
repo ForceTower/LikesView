@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.databinding.FragmentAddProfileBinding
 import dev.forcetower.toolkit.components.BaseFragment
@@ -17,6 +18,7 @@ class AddProfileFragment : BaseFragment() {
     private lateinit var binding: FragmentAddProfileBinding
     private lateinit var adapter: SearchAdapter
     private val viewModel by viewModels<AddProfileViewModel>()
+    private val args by navArgs<AddProfileFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,8 +40,12 @@ class AddProfileFragment : BaseFragment() {
         })
 
         viewModel.onProfileAdded.observe(viewLifecycleOwner, EventObserver {
-            val directions = AddProfileFragmentDirections.actionAddProfileToHome()
-            findNavController().navigate(directions)
+            if (args.fromHome) {
+                findNavController().popBackStack()
+            } else {
+                val directions = AddProfileFragmentDirections.actionAddProfileToHome()
+                findNavController().navigate(directions)
+            }
         })
 
         viewModel.search.observe(viewLifecycleOwner, Observer {

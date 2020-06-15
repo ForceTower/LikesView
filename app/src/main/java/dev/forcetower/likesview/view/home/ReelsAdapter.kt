@@ -21,7 +21,7 @@ class ReelsAdapter(
         holder.binding.profile = getItem(position)
     }
 
-    inner class ProfileHolder(val binding: ItemProfileReelBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ProfileHolder(val binding: ItemProfileReelBinding) : RecyclerView.ViewHolder(binding.root) {
         init { binding.actions = actions }
     }
 

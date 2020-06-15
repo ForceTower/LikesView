@@ -3,13 +3,12 @@ package dev.forcetower.likesview.core.source.paging
 import androidx.paging.PagingSource
 import com.google.gson.Gson
 import dev.forcetower.likesview.core.model.database.InstagramMedia
-import dev.forcetower.likesview.core.model.database.InstagramProfile
 import dev.forcetower.likesview.core.model.dto.InstagramProfilePartial
 import dev.forcetower.likesview.core.source.local.LikeDB
 import dev.forcetower.likesview.core.source.remote.InstagramAPI
 import timber.log.Timber
 
-class InstagramMediaSource (
+class InstagramMediaSource(
     private val userId: Long,
     private val database: LikeDB,
     private val service: InstagramAPI

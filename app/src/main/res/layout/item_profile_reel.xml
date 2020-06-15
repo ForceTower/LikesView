@@ -14,9 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="50dp"
         android:layout_height="56dp"
-        android:onClick="@{() -> actions.onReelClicked(profile)}"
-        android:animateLayoutChanges="true"
-        app:selectedProfileMargin="@{profile.selected}">
+        android:onClick="@{() -> actions.onReelClicked(profile)}">
 
         <ImageView
             android:id="@+id/user_image"

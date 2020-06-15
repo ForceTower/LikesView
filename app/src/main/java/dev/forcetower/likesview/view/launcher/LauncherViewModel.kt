@@ -7,9 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import dev.forcetower.likesview.core.source.repository.ProfileRepository
 import dev.forcetower.toolkit.lifecycle.Event
-import okhttp3.OkHttpClient
-import timber.log.Timber
-import javax.inject.Inject
 
 class LauncherViewModel @ViewModelInject constructor(
     repository: ProfileRepository

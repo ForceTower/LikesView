@@ -13,4 +13,6 @@
     <string name="media_gallery_description">Galeria de fotos</string>
     <string name="followers">seguidores</string>
     <string name="following">seguindo</string>
+    <string name="add_profile">Adicionar perfil</string>
+    <string name="failed_to_load_profile">Erro ao carregar informações, tente mais tarde</string>
 </resources>

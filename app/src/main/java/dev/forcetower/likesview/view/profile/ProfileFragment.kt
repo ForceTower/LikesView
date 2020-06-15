@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +45,11 @@ class ProfileFragment : BaseFragment() {
         lifecycleScope.launch {
             viewModel.media(userId).collectLatest {
                 medias.submitData(it)
+            }
+            medias.loadStateFlow.collectLatest {
+                if (it.refresh is LoadState.Error) {
+                    showSnack(getString(R.string.failed_to_load_profile))
+                }
             }
         }
         viewModel.profile(userId).observe(viewLifecycleOwner, Observer {

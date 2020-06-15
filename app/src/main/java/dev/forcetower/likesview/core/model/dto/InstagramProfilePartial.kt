@@ -1,6 +1,5 @@
 package dev.forcetower.likesview.core.model.dto
 
-import dev.forcetower.likesview.core.model.database.InstagramProfile
 import java.util.Calendar
 
 data class InstagramProfilePartial(

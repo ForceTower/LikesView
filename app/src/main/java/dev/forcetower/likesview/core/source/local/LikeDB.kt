@@ -12,7 +12,7 @@ import dev.forcetower.likesview.core.source.local.dao.ProfileDao
     InstagramMedia::class
 ], version = 1)
 @TypeConverters(value = [
-    InstagramMediaContentsConverter::class
+    Converters::class
 ])
 abstract class LikeDB : RoomDatabase() {
     abstract fun profile(): ProfileDao

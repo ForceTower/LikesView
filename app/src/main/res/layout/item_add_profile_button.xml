@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="actions"
+            type="dev.forcetower.likesview.view.home.HomeActions" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:onClick="@{() -> actions.onAddProfile()}">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/add_profile_drawable"/>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_new"
+            android:tint="?attr/colorPrimary"
+            android:contentDescription="@string/add_profile" />
+    </FrameLayout>
+</layout>

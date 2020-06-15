@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import dev.forcetower.likesview.core.model.database.InstagramMedia
 
-object InstagramMediaContentsConverter {
+object Converters {
     @JvmStatic
     @TypeConverter
     fun galleryContentToString(value: InstagramMedia.GalleryContent): String {

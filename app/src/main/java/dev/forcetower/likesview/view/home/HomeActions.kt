@@ -4,4 +4,5 @@ import dev.forcetower.likesview.core.model.database.InstagramProfile
 
 interface HomeActions {
     fun onReelClicked(profile: InstagramProfile)
+    fun onAddProfile()
 }

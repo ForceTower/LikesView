@@ -2,7 +2,6 @@ package dev.forcetower.likesview.core.source.remote
 
 import dev.forcetower.likesview.core.model.dto.ProfileFetchResult
 import dev.forcetower.likesview.core.model.dto.TopSearchResult
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -27,5 +26,4 @@ interface InstagramAPI {
         @QueryMap(encoded = false) queryMap: Map<String, String>,
         @Query("query_hash") queryHash: String = "42323d64886122307be10013ad2dcc44"
     ): ProfileFetchResult
-
 }
