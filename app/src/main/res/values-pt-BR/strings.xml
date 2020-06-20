@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="pt-BR">
+    <string name="app_name">InstaLikes</string>
+    <string name="onboarding_welcome">Boas vindas ao InstaLikes</string>
+    <string name="onboarding_welcome_desc">Descubra a quantidade de likes das postagens do Instagram!</string>
+    <string name="onboarding_login">Vamos lá!</string>
+    <string name="add_profile_desc">Digite o nome do usuário que deseja visualizar as curtidas das postagens</string>
+    <string name="instagram_username_label">Usuário do Instagram</string>
+    <string name="instagram_username_hint">Digite o nome do usuário</string>
+    <string name="do_login_action">Ver curtidas</string>
+    <string name="no_profile_selected">Selecione um perfil</string>
+    <string name="instagram_verified_profile">Perfil Verificado</string>
+    <string name="media_gallery_description">Galeria de fotos</string>
+    <string name="followers">seguidores</string>
+    <string name="following">seguindo</string>
+    <string name="add_profile">Adicionar perfil</string>
+    <string name="failed_to_load_profile">Erro ao carregar informações, tente mais tarde</string>
+</resources>
