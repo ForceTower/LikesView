@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.MergeAdapter
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.core.model.database.InstagramProfile
@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment() {
 
         val add = AddProfileAdapter(viewModel)
         val reels = ReelsAdapter(viewModel)
-        val merge = MergeAdapter(add, reels)
+        val merge = ConcatAdapter(add, reels)
 
         val profiles = ProfileFragmentAdapter(childFragmentManager, lifecycle)
 

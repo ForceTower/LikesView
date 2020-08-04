@@ -8,8 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.R
 import dev.forcetower.likesview.databinding.FragmentProfileBinding
@@ -39,7 +39,7 @@ class ProfileFragment : BaseFragment() {
         val medias = MediaAdapter()
         val header = HeaderAdapter()
 
-        val adapter = MergeAdapter(header, medias)
+        val adapter = ConcatAdapter(header, medias)
 
         val userId = requireArguments().getLong("userId")
         lifecycleScope.launch {
