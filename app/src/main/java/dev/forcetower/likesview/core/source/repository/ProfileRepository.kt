@@ -11,8 +11,10 @@ import dev.forcetower.likesview.core.source.local.LikeDB
 import dev.forcetower.likesview.core.source.paging.InstagramMediaSource
 import dev.forcetower.likesview.core.source.remote.InstagramAPI
 import dev.forcetower.toolkit.extensions.limit
+import dev.forcetower.toolkit.utils.string.StringSimilarity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,8 +27,10 @@ class ProfileRepository @Inject constructor(
     fun profiles() = database.profile().getAll()
     fun currentProfile() = database.profile().getCurrent()
 
-    suspend fun search(username: String): List<InstagramUserSearch> = withContext(Dispatchers.IO) {
-        service.topSearch(username).users?.limit(3)?.map { it.user } ?: emptyList()
+    fun search(username: String): Flow<List<InstagramUserSearch>> = flow {
+        service.topSearch(username).users?.sortedByDescending {
+            StringSimilarity.similarity(username, it.user.username)
+        }?.limit(3)?.map { it.user } ?: emptyList()
     }
 
     suspend fun addProfile(profile: InstagramUserSearch) {

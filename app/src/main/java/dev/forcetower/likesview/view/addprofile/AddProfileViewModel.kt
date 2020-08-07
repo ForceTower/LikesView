@@ -15,6 +15,7 @@ class AddProfileViewModel @ViewModelInject constructor(
     override val username = MutableLiveData("")
     override val usernameError = MutableLiveData<Int?>()
     override val loading = MutableLiveData(false)
+    private var _current: LiveData<List<InstagramUserSearch>>? = null
 
     private var _selectedProfile: InstagramUserSearch? = null
 
@@ -31,14 +32,17 @@ class AddProfileViewModel @ViewModelInject constructor(
         _search.addSource(username) {
             Timber.d("Username changed value to $it")
             val name = if (it.startsWith("@")) it.substring(1) else it
-            viewModelScope.launch {
-                _search.value = repository.search(name)
+            _current?.let { source -> _search.removeSource(source) }
+
+            val current = repository.search(name).asLiveData()
+            _current = current
+            _search.addSource(current) { values ->
+                _search.value = values
             }
         }
     }
 
     override fun onAddProfileClick(user: InstagramUserSearch) {
-        // _onProfileClick.value = Event(user)
         _selectedProfile = user
 
         viewModelScope.launch {
