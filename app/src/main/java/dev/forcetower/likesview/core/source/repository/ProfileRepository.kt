@@ -27,7 +27,7 @@ class ProfileRepository @Inject constructor(
     fun profiles() = database.profile().getAll()
     fun currentProfile() = database.profile().getCurrent()
 
-    fun search(username: String): Flow<List<InstagramUserSearch>> = flow {
+    suspend fun search(username: String): List<InstagramUserSearch> = withContext(Dispatchers.IO) {
         service.topSearch(username).users?.sortedByDescending {
             StringSimilarity.similarity(username, it.user.username)
         }?.limit(3)?.map { it.user } ?: emptyList()

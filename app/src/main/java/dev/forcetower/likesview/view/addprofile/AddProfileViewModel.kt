@@ -6,6 +6,7 @@ import dev.forcetower.likesview.R
 import dev.forcetower.likesview.core.model.dto.InstagramUserSearch
 import dev.forcetower.likesview.core.source.repository.ProfileRepository
 import dev.forcetower.toolkit.lifecycle.Event
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -34,10 +35,9 @@ class AddProfileViewModel @ViewModelInject constructor(
             val name = if (it.startsWith("@")) it.substring(1) else it
             _current?.let { source -> _search.removeSource(source) }
 
-            val current = repository.search(name).asLiveData()
-            _current = current
-            _search.addSource(current) { values ->
-                _search.value = values
+            viewModelScope.launch {
+                val current = repository.search(name)
+                _search.value = current
             }
         }
     }
