@@ -17,8 +17,9 @@ android {
         applicationId "dev.forcetower.likesview"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 7
-        versionName "1.0.2"
+        def (code, name) = buildVersion()
+        versionCode code
+        versionName name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
