@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -28,9 +29,14 @@ class ProfileRepository @Inject constructor(
     fun currentProfile() = database.profile().getCurrent()
 
     suspend fun search(username: String): List<InstagramUserSearch> = withContext(Dispatchers.IO) {
-        service.topSearch(username).users?.sortedByDescending {
-            StringSimilarity.similarity(username, it.user.username)
-        }?.limit(3)?.map { it.user } ?: emptyList()
+        try {
+            service.topSearch(username).users?.sortedByDescending {
+                StringSimilarity.similarity(username, it.user.username)
+            }?.limit(3)?.map { it.user } ?: emptyList()
+        } catch (error: Throwable) {
+            Timber.d(error, "Top search request failed")
+            emptyList<InstagramUserSearch>()
+        }
     }
 
     suspend fun addProfile(profile: InstagramUserSearch) {

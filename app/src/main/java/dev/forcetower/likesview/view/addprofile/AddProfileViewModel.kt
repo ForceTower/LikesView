@@ -7,6 +7,7 @@ import dev.forcetower.likesview.core.model.dto.InstagramUserSearch
 import dev.forcetower.likesview.core.source.repository.ProfileRepository
 import dev.forcetower.toolkit.lifecycle.Event
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -16,7 +17,7 @@ class AddProfileViewModel @ViewModelInject constructor(
     override val username = MutableLiveData("")
     override val usernameError = MutableLiveData<Int?>()
     override val loading = MutableLiveData(false)
-    private var _current: LiveData<List<InstagramUserSearch>>? = null
+    private var _current: Job? = null
 
     private var _selectedProfile: InstagramUserSearch? = null
 
@@ -33,9 +34,9 @@ class AddProfileViewModel @ViewModelInject constructor(
         _search.addSource(username) {
             Timber.d("Username changed value to $it")
             val name = if (it.startsWith("@")) it.substring(1) else it
-            _current?.let { source -> _search.removeSource(source) }
+            _current?.cancel()
 
-            viewModelScope.launch {
+            _current = viewModelScope.launch {
                 val current = repository.search(name)
                 _search.value = current
             }
