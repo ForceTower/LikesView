@@ -41,6 +41,7 @@ buildscript {
         android_gradle_plugin = '4.0.1'
         kotlinter = "1.26.0"
         hilt_dagger = '2.28.3-alpha'
+        play_publisher = "2.7.1"
     }
     repositories {
         google()
@@ -49,6 +50,7 @@ buildscript {
         maven { url "http://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
+        classpath "com.github.triplet.gradle:play-publisher:$play_publisher"
         classpath "com.android.tools.build:gradle:${android_gradle_plugin}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jmailen.gradle:kotlinter-gradle:$kotlinter"
