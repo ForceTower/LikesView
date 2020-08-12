@@ -84,3 +84,5 @@ subprojects { evaluateProject ->
         }
     }
 }
+
+apply from: "versioning.gradle"
