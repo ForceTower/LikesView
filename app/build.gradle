@@ -35,15 +35,15 @@ android {
 
     signingConfigs {
         release {
-            def password = System.getenv("INSTA_KEYSTORE_PASSWORD")
+            def password = System.getenv("APP_KEYSTORE_PASSWORD")
             if (password == null)
                 password = "android"
 
-            def alias = System.getenv("INSTA_KEYSTORE_ALIAS")
+            def alias = System.getenv("APP_KEYSTORE_ALIAS")
             if (alias == null)
                 alias = "androiddebugkey"
 
-            def keyPass = System.getenv("INSTA_KEYSTORE_PRIVATE_KEY_PASSWORD")
+            def keyPass = System.getenv("APP_KEYSTORE_PRIVATE_KEY_PASSWORD")
             if (keyPass == null)
                 keyPass = "android"
 
