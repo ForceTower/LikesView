@@ -14,7 +14,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="50dp"
         android:layout_height="56dp"
-        android:onClick="@{() -> actions.onReelClicked(profile)}">
+        android:onClick="@{() -> actions.onReelClicked(profile)}"
+        android:longClickable="true"
+        android:onLongClick="@{() -> actions.onReelLongClick(profile)}">
 
         <ImageView
             android:id="@+id/user_image"

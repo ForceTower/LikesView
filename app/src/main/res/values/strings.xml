@@ -16,4 +16,9 @@
     <string name="following">following</string>
     <string name="add_profile">Add profile</string>
     <string name="failed_to_load_profile">Failed to load information, try again later</string>
+    <string name="remove_profile">Remove Profile</string>
+    <string name="remove_profile_sub">You are about to remove %1$s from your list</string>
+    <string name="remove_profile_exp">Are you sure you would like to remove this profile? It could be added again whenever you want!</string>
+    <string name="remove_profile_cancel">Cancel</string>
+    <string name="remove_profile_continue">Remove</string>
 </resources>

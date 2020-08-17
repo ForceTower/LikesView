@@ -17,6 +17,9 @@ abstract class ProfileDao : BaseDao<InstagramProfile>() {
     @Query("SELECT * FROM InstagramProfile")
     abstract fun getAll(): Flow<List<InstagramProfile>>
 
+    @Query("SELECT * FROM InstagramProfile")
+    abstract fun getAllDirect(): List<InstagramProfile>
+
     @Query("SELECT * FROM InstagramProfile WHERE id = :userId")
     abstract fun getById(userId: Long): Flow<InstagramProfile?>
 

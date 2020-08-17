@@ -6,7 +6,6 @@ import dev.forcetower.likesview.R
 import dev.forcetower.likesview.core.model.dto.InstagramUserSearch
 import dev.forcetower.likesview.core.source.repository.ProfileRepository
 import dev.forcetower.toolkit.lifecycle.Event
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber

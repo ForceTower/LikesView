@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.core.model.database.InstagramProfile
 import dev.forcetower.likesview.databinding.FragmentHomeBinding
 import dev.forcetower.likesview.view.profile.ProfileFragmentAdapter
+import dev.forcetower.likesview.view.removeprofile.RemoveProfileSheet
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.lifecycle.EventObserver
 
@@ -80,6 +82,13 @@ class HomeFragment : BaseFragment() {
                 fromHome = true
             }
             findNavController().navigate(directions)
+        })
+
+        viewModel.onProfileLongClicked.observe(viewLifecycleOwner, EventObserver {
+            val sheet = RemoveProfileSheet().apply {
+                arguments = bundleOf("profile" to it)
+            }
+            sheet.show(childFragmentManager, "remove_profile")
         })
     }
 }

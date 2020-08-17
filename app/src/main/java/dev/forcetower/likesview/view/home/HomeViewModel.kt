@@ -20,8 +20,26 @@ class HomeViewModel @ViewModelInject constructor(
     private val _onAddProfile = MutableLiveData<Event<Unit>>()
     val onAddProfile: LiveData<Event<Unit>> = _onAddProfile
 
+    private val _onProfileLongClicked = MutableLiveData<Event<InstagramProfile>>()
+    val onProfileLongClicked: LiveData<Event<InstagramProfile>> = _onProfileLongClicked
+
     override fun onReelClicked(profile: InstagramProfile) {
         setProfileSelected(profile)
+    }
+
+    override fun onReelLongClick(profile: InstagramProfile): Boolean {
+        _onProfileLongClicked.value = Event(profile)
+        return true
+    }
+
+    override fun onRemoveProfile(profile: InstagramProfile?) {
+        profile ?: return
+        viewModelScope.launch {
+            val hasProfilesLeft = repository.onDeleteProfile(profile)
+            if (!hasProfilesLeft) {
+                _onAddProfile.value = Event(Unit)
+            }
+        }
     }
 
     override fun onAddProfile() {
