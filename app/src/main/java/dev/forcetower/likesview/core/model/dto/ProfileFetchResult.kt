@@ -53,7 +53,7 @@ data class GraphNode<T>(
 )
 
 data class MediaGraph(
-    val id: Long,
+    val id: String,
     @SerializedName("__typename")
     val type: String,
     @SerializedName("taken_at_timestamp")

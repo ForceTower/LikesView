@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,9 @@ class AddProfileFragment : BaseFragment() {
         })
 
         viewModel.onProfileAdded.observe(viewLifecycleOwner, EventObserver {
+            val imm = requireContext().getSystemService(InputMethodManager::class.java)
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+
             if (args.fromHome) {
                 findNavController().popBackStack()
             } else {

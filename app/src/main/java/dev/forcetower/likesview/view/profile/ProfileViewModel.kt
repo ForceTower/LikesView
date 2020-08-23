@@ -18,20 +18,24 @@ class ProfileViewModel @ViewModelInject constructor(
     private var mediaUserId: Long? = null
     private var profileUserId: Long? = null
 
-    private lateinit var media: Flow<PagingData<InstagramMedia>>
-    private lateinit var profile: LiveData<InstagramProfile?>
+    private var media: Flow<PagingData<InstagramMedia>>? = null
+    private var profile: LiveData<InstagramProfile?>? = null
 
     fun media(userId: Long): Flow<PagingData<InstagramMedia>> {
-        if (this.mediaUserId == userId) return media
+        val currentMedia = media
+        if (this.mediaUserId == userId && currentMedia != null) return currentMedia
         this.mediaUserId = userId
-        media = repository.medias(userId).cachedIn(viewModelScope)
-        return media
+        val newMedia = repository.medias(userId).cachedIn(viewModelScope)
+        this.media = newMedia
+        return newMedia
     }
 
     fun profile(userId: Long): LiveData<InstagramProfile?> {
-        if (this.profileUserId == userId) return profile
+        val currentProfile = profile
+        if (this.profileUserId == userId && currentProfile != null) return currentProfile
         this.profileUserId = userId
-        profile = repository.profile(userId).asLiveData()
-        return profile
+        val newProfile = repository.profile(userId)
+        this.profile = newProfile
+        return newProfile
     }
 }
