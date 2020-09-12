@@ -1,5 +1,6 @@
 package dev.forcetower.likesview.dagger.module
 
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,11 +16,11 @@ import javax.inject.Singleton
 object ServiceModule {
     @Provides
     @Singleton
-    fun provideService(client: OkHttpClient): InstagramAPI {
+    fun provideService(client: OkHttpClient, gson: Gson): InstagramAPI {
         return Retrofit.Builder()
             .baseUrl("https://www.instagram.com/")
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(InstagramAPI::class.java)
     }
