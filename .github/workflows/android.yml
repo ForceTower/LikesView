@@ -33,6 +33,10 @@ jobs:
       - name: Dependencies
         run: ./gradlew dependencies
 
+      - name: Lint & JVM Checks
+        run: ./gradlew check
+        if: "!contains(github.event.head_commit.message, '[lint skip]')"
+
       - name: Publish Release App
         run: ./gradlew publishReleaseBundle
         if: "!contains(github.event.head_commit.message, '[publish skip]')"
