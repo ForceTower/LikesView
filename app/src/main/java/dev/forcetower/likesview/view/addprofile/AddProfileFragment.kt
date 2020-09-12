@@ -36,26 +36,35 @@ class AddProfileFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.onProfileClick.observe(viewLifecycleOwner, EventObserver {
-            binding.etUsername.setText(it.username)
-        })
-
-        viewModel.onProfileAdded.observe(viewLifecycleOwner, EventObserver {
-            val imm = requireContext().getSystemService(InputMethodManager::class.java)
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
-
-            if (args.fromHome) {
-                findNavController().popBackStack()
-            } else {
-                val directions = AddProfileFragmentDirections.actionAddProfileToHome()
-                findNavController().navigate(directions)
+        viewModel.onProfileClick.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                binding.etUsername.setText(it.username)
             }
-        })
+        )
 
-        viewModel.search.observe(viewLifecycleOwner, Observer {
-            binding.recyclerSearch.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
-            adapter.submitList(it)
-        })
+        viewModel.onProfileAdded.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                val imm = requireContext().getSystemService(InputMethodManager::class.java)
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
+
+                if (args.fromHome) {
+                    findNavController().popBackStack()
+                } else {
+                    val directions = AddProfileFragmentDirections.actionAddProfileToHome()
+                    findNavController().navigate(directions)
+                }
+            }
+        )
+
+        viewModel.search.observe(
+            viewLifecycleOwner,
+            Observer {
+                binding.recyclerSearch.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
+                adapter.submitList(it)
+            }
+        )
 
         binding.recyclerSearch.run {
             adapter = this@AddProfileFragment.adapter

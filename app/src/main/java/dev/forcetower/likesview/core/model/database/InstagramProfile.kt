@@ -10,9 +10,11 @@ import dev.forcetower.likesview.core.model.dto.InstagramUserSearch
 import dev.forcetower.likesview.core.model.dto.ProfileFetchResult
 import java.util.Calendar
 
-@Entity(indices = [
-    Index(value = ["username"], unique = true)
-])
+@Entity(
+    indices = [
+        Index(value = ["username"], unique = true)
+    ]
+)
 data class InstagramProfile(
     @PrimaryKey(autoGenerate = false)
     val id: Long,

@@ -1,10 +1,7 @@
 package dev.forcetower.likesview.view
 
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsets
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar

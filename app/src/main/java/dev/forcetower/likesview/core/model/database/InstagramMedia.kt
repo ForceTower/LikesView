@@ -13,12 +13,15 @@ import dev.forcetower.likesview.core.model.dto.ProfileFetchResult
 import java.util.Calendar
 import kotlin.math.abs
 
-@Entity(indices = [
-    Index(value = ["shortCode"], unique = true),
-    Index(value = ["profileId"])
-], foreignKeys = [
-    ForeignKey(entity = InstagramProfile::class, parentColumns = ["id"], childColumns = ["profileId"], onUpdate = NO_ACTION, onDelete = CASCADE)
-])
+@Entity(
+    indices = [
+        Index(value = ["shortCode"], unique = true),
+        Index(value = ["profileId"])
+    ],
+    foreignKeys = [
+        ForeignKey(entity = InstagramProfile::class, parentColumns = ["id"], childColumns = ["profileId"], onUpdate = NO_ACTION, onDelete = CASCADE)
+    ]
+)
 data class InstagramMedia(
     @PrimaryKey
     val id: Int,

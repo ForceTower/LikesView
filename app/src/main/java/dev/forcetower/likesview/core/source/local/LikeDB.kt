@@ -10,14 +10,19 @@ import dev.forcetower.likesview.core.source.local.dao.MediaDao
 import dev.forcetower.likesview.core.source.local.dao.MediaPageDao
 import dev.forcetower.likesview.core.source.local.dao.ProfileDao
 
-@Database(entities = [
-    InstagramProfile::class,
-    InstagramMedia::class,
-    InstagramMediaPage::class
-], version = 2)
-@TypeConverters(value = [
-    Converters::class
-])
+@Database(
+    entities = [
+        InstagramProfile::class,
+        InstagramMedia::class,
+        InstagramMediaPage::class
+    ],
+    version = 2
+)
+@TypeConverters(
+    value = [
+        Converters::class
+    ]
+)
 abstract class LikeDB : RoomDatabase() {
     abstract fun profile(): ProfileDao
     abstract fun media(): MediaDao

@@ -15,7 +15,7 @@ abstract class ProfileDao : BaseDao<InstagramProfile>() {
     @Query("SELECT * FROM InstagramProfile WHERE username = :username")
     abstract suspend fun getByUsernameDirect(username: String): InstagramProfile?
 
-    @Query("SELECT * FROM InstagramProfile")
+    @Query("SELECT * FROM InstagramProfile ORDER BY username")
     abstract fun getAll(): Flow<List<InstagramProfile>>
 
     @Query("SELECT * FROM InstagramProfile")

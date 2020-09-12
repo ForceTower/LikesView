@@ -12,7 +12,6 @@ import dev.forcetower.likesview.core.source.local.LikeDB
 import dev.forcetower.likesview.core.source.remote.InstagramAPI
 import retrofit2.HttpException
 import timber.log.Timber
-import java.io.InvalidObjectException
 
 @OptIn(ExperimentalPagingApi::class)
 class InstagramMediaRemoteMediator(
@@ -25,11 +24,13 @@ class InstagramMediaRemoteMediator(
         state: PagingState<Int, InstagramMedia>
     ): MediatorResult {
 
-        val page: String? = when(loadType) {
+        val page: String? = when (loadType) {
             // start from scratch
-            LoadType.REFRESH -> null
+            LoadType.REFRESH -> {
+                getRemoteKeyClosestToCurrentPosition(state)?.currentPageId
+            }
             LoadType.PREPEND -> {
-                return MediatorResult.Error(InvalidObjectException("just cant prepend."))
+                return MediatorResult.Success(endOfPaginationReached = true)
             }
             // continue
             LoadType.APPEND -> {
@@ -65,7 +66,7 @@ class InstagramMediaRemoteMediator(
             Timber.e(error, "Error during fetch")
             return MediatorResult.Error(error)
         } catch (error: Throwable) {
-            Timber.e(error, "Error during fetch")
+            Timber.e(error, "Error during fetch of page $page")
             return MediatorResult.Error(error)
         }
     }
