@@ -11,7 +11,7 @@ apply plugin: 'com.github.triplet.play'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "dev.forcetower.likesview"
@@ -53,12 +53,6 @@ android {
             keyAlias alias
             keyPassword keyPass
         }
-        debug {
-            storeFile rootProject.file("debug.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-        }
     }
 
     buildTypes {
@@ -87,6 +81,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
 }
 
@@ -133,6 +128,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
 
     // Paging
+    implementation "androidx.paging:paging-runtime:$paging"
     implementation "androidx.paging:paging-runtime-ktx:$paging"
 
     // Dependency injection
@@ -160,12 +156,12 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glide"
 
-    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.4'
-    implementation 'com.google.firebase:firebase-crashlytics:17.1.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
     implementation 'com.google.firebase:firebase-messaging:20.2.4'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }

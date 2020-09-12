@@ -29,6 +29,15 @@ class HeaderAdapter : ListAdapter<InstagramProfile, HeaderAdapter.Holder>(DiffCa
         override fun areContentsTheSame(
             oldItem: InstagramProfile,
             newItem: InstagramProfile
-        ) = oldItem == newItem
+        ): Boolean {
+            return oldItem.followersCount == newItem.followersCount &&
+                oldItem.followingCount == newItem.followingCount &&
+                oldItem.name == newItem.name &&
+                oldItem.biography == newItem.biography &&
+                oldItem.username == newItem.username &&
+                oldItem.pictureUrl == newItem.pictureUrl &&
+                oldItem.pictureUrlHd == newItem.pictureUrlHd &&
+                oldItem.isPrivate == newItem.isPrivate
+        }
     }
 }

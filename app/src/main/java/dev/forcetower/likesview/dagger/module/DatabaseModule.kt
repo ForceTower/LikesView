@@ -16,6 +16,7 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): LikeDB {
-        return Room.databaseBuilder(context, LikeDB::class.java, "likes.db").build()
+        return Room.databaseBuilder(context, LikeDB::class.java, "likes_test.db")
+            .build()
     }
 }

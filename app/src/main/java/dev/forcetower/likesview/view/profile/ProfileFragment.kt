@@ -52,9 +52,12 @@ class ProfileFragment : BaseFragment() {
                 }
             }
         }
-        viewModel.profile(userId).observe(viewLifecycleOwner, Observer {
-            header.submitList(listOf(it))
-        })
+        viewModel.profile(userId).observe(
+            viewLifecycleOwner,
+            Observer {
+                header.submitList(listOf(it))
+            }
+        )
 
         val columns = resources.getInteger(R.integer.home_profile_media_column)
 

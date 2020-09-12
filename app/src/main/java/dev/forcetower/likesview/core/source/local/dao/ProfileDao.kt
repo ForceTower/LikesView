@@ -1,5 +1,6 @@
 package dev.forcetower.likesview.core.source.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -14,11 +15,14 @@ abstract class ProfileDao : BaseDao<InstagramProfile>() {
     @Query("SELECT * FROM InstagramProfile WHERE username = :username")
     abstract suspend fun getByUsernameDirect(username: String): InstagramProfile?
 
-    @Query("SELECT * FROM InstagramProfile")
+    @Query("SELECT * FROM InstagramProfile ORDER BY username")
     abstract fun getAll(): Flow<List<InstagramProfile>>
 
+    @Query("SELECT * FROM InstagramProfile ORDER BY username")
+    abstract fun getAllDirect(): List<InstagramProfile>
+
     @Query("SELECT * FROM InstagramProfile WHERE id = :userId")
-    abstract fun getById(userId: Long): Flow<InstagramProfile?>
+    abstract fun getById(userId: Long): LiveData<InstagramProfile?>
 
     @Query("SELECT * FROM InstagramProfile WHERE id = :userId")
     abstract suspend fun getByIdDirect(userId: Long): InstagramProfile?
@@ -28,6 +32,9 @@ abstract class ProfileDao : BaseDao<InstagramProfile>() {
 
     @Query("SELECT * FROM InstagramProfile WHERE selected = 1")
     abstract fun getCurrent(): Flow<InstagramProfile?>
+
+    @Query("SELECT * FROM InstagramProfile WHERE selected = 1")
+    abstract suspend fun getCurrentDirect(): InstagramProfile?
 
     @Update(entity = InstagramProfile::class, onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun update(partial: InstagramProfilePartial)

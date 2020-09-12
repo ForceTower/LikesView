@@ -1,12 +1,15 @@
 package dev.forcetower.likesview.view.addprofile
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dev.forcetower.likesview.R
 import dev.forcetower.likesview.core.model.dto.InstagramUserSearch
 import dev.forcetower.likesview.core.source.repository.ProfileRepository
 import dev.forcetower.toolkit.lifecycle.Event
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber

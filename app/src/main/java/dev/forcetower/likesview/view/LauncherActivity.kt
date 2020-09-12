@@ -22,21 +22,24 @@ class LauncherActivity : BaseActivity() {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         super.onCreate(savedInstanceState)
 
-        viewModel.launchDestination.observe(this, EventObserver {
-            val intent = Intent(this, MainActivity::class.java)
-            when (it) {
-                LaunchDestination.HOME -> {
-                    val graph = NavInflater(this, PermissiveNavigatorProvider())
-                        .inflate(R.navigation.home_graph)
+        viewModel.launchDestination.observe(
+            this,
+            EventObserver {
+                val intent = Intent(this, MainActivity::class.java)
+                when (it) {
+                    LaunchDestination.HOME -> {
+                        val graph = NavInflater(this, PermissiveNavigatorProvider())
+                            .inflate(R.navigation.home_graph)
 
-                    val node = graph.findNode(R.id.home)
-                    intent.putExtra("android-support-nav:controller:deepLinkIds", node!!.buildExplicitly())
+                        val node = graph.findNode(R.id.home)
+                        intent.putExtra("android-support-nav:controller:deepLinkIds", node!!.buildExplicitly())
+                    }
+                    LaunchDestination.LOGIN -> Unit
                 }
-                LaunchDestination.LOGIN -> Unit
+                startActivity(intent)
+                finish()
             }
-            startActivity(intent)
-            finish()
-        })
+        )
     }
 }
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class ProfileFragmentAdapter(
     fm: FragmentManager,
@@ -20,6 +21,7 @@ class ProfileFragmentAdapter(
 
     override fun getItemCount() = differ.currentList.size
 
+    @ExperimentalCoroutinesApi
     override fun createFragment(position: Int): Fragment {
         return ProfileFragment().apply {
             arguments = bundleOf("userId" to differ.currentList[position])

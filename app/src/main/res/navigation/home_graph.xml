@@ -36,9 +36,9 @@
     </fragment>
     <fragment
         android:id="@+id/home"
-        android:name="dev.forcetower.likesview.view.home.HomeFragment"
+        android:name="dev.forcetower.likesview.view.home.single.HomeSingleFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_home_single">
         <action
             android:id="@+id/action_home_to_add_profile"
             app:destination="@id/add_profile"
@@ -46,5 +46,17 @@
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_open_enter"
             app:popExitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/action_home_to_remove_profile"
+            app:destination="@id/remove_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/remove_profile"
+        android:name="dev.forcetower.likesview.view.removeprofile.RemoveProfileSheet"
+        android:label="Remove Profile"
+        tools:layout="@layout/sheet_remove_profile">
+        <argument
+            android:name="profile"
+            app:argType="dev.forcetower.likesview.core.model.database.InstagramProfile" />
     </fragment>
 </navigation>

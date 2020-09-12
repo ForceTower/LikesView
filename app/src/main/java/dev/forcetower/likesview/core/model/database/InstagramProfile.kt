@@ -1,5 +1,7 @@
 package dev.forcetower.likesview.core.model.database
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
@@ -8,9 +10,11 @@ import dev.forcetower.likesview.core.model.dto.InstagramUserSearch
 import dev.forcetower.likesview.core.model.dto.ProfileFetchResult
 import java.util.Calendar
 
-@Entity(indices = [
-    Index(value = ["username"], unique = true)
-])
+@Entity(
+    indices = [
+        Index(value = ["username"], unique = true)
+    ]
+)
 data class InstagramProfile(
     @PrimaryKey(autoGenerate = false)
     val id: Long,
@@ -34,8 +38,62 @@ data class InstagramProfile(
     val isSelected: Boolean = false,
     val lastChecked: Long = 0,
     val insertedAt: Long = 0
-) {
-    companion object {
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readLong(),
+        parcel.readString()!!,
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readLong(),
+        parcel.readInt(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readLong(),
+        parcel.readLong()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(id)
+        parcel.writeString(username)
+        parcel.writeString(name)
+        parcel.writeString(pictureUrl)
+        parcel.writeString(pictureUrlHd)
+        parcel.writeString(biography)
+        parcel.writeInt(followingCount)
+        parcel.writeInt(followersCount)
+        parcel.writeInt(postCount)
+        parcel.writeByte(if (isPrivate) 1 else 0)
+        parcel.writeByte(if (isVerified) 1 else 0)
+        parcel.writeString(nextCachedPage)
+        parcel.writeByte(if (hasCachedNextPage) 1 else 0)
+        parcel.writeLong(lastUpdate)
+        parcel.writeInt(meanLikes)
+        parcel.writeByte(if (isSelected) 1 else 0)
+        parcel.writeLong(lastChecked)
+        parcel.writeLong(insertedAt)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<InstagramProfile> {
+        override fun createFromParcel(parcel: Parcel): InstagramProfile {
+            return InstagramProfile(parcel)
+        }
+
+        override fun newArray(size: Int): Array<InstagramProfile?> {
+            return arrayOfNulls(size)
+        }
+
         fun createFromFetch(fetchResult: ProfileFetchResult): InstagramProfile? {
             val user = fetchResult.graph?.user
             user ?: return null

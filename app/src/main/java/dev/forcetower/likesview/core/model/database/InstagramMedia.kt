@@ -13,15 +13,18 @@ import dev.forcetower.likesview.core.model.dto.ProfileFetchResult
 import java.util.Calendar
 import kotlin.math.abs
 
-@Entity(indices = [
-    Index(value = ["shortCode"], unique = true),
-    Index(value = ["profileId"])
-], foreignKeys = [
-    ForeignKey(entity = InstagramProfile::class, parentColumns = ["id"], childColumns = ["profileId"], onUpdate = NO_ACTION, onDelete = CASCADE)
-])
+@Entity(
+    indices = [
+        Index(value = ["shortCode"], unique = true),
+        Index(value = ["profileId"])
+    ],
+    foreignKeys = [
+        ForeignKey(entity = InstagramProfile::class, parentColumns = ["id"], childColumns = ["profileId"], onUpdate = NO_ACTION, onDelete = CASCADE)
+    ]
+)
 data class InstagramMedia(
     @PrimaryKey
-    val id: Long,
+    val id: Int,
     val profileId: Long,
     val type: String,
     val shortCode: String,
@@ -35,7 +38,6 @@ data class InstagramMedia(
     val dimensionWidth: Int,
     val dimensionHeight: Int,
     val lastUpdated: Long,
-    val nextPage: String?,
     val contents: GalleryContent
 ) {
     @Ignore
@@ -44,16 +46,16 @@ data class InstagramMedia(
     val isGallery = type == "GraphSidecar"
 
     companion object {
-        fun getMediaListFromProfileFetch(fetchResult: ProfileFetchResult, desiredWidth: Int, nextPage: String?): List<InstagramMedia> {
+        fun getMediaListFromProfileFetch(fetchResult: ProfileFetchResult, desiredWidth: Int): List<InstagramMedia> {
             val user = fetchResult.graph?.user ?: fetchResult.data?.user
             val profile = user?.id ?: 0
             val edges = user?.edgeMedia?.edges ?: emptyList()
-            return edges.map { createFromMediaProfileNode(it.node, desiredWidth, profile, nextPage) }
+            return edges.map { createFromMediaProfileNode(it.node, desiredWidth, profile) }
         }
 
-        private fun createFromMediaProfileNode(node: MediaGraph, desiredWidth: Int = 0, profileId: Long, nextPage: String? = null): InstagramMedia {
+        private fun createFromMediaProfileNode(node: MediaGraph, desiredWidth: Int = 0, profileId: Long): InstagramMedia {
             return InstagramMedia(
-                node.id,
+                node.id.hashCode(),
                 node.owner?.id ?: profileId,
                 node.type,
                 node.shortCode,
@@ -67,7 +69,6 @@ data class InstagramMedia(
                 node.dimensions?.width ?: 1,
                 node.dimensions?.height ?: 1,
                 Calendar.getInstance().timeInMillis,
-                nextPage,
                 createDefault(node.displayUrl)
             )
         }
