@@ -18,7 +18,7 @@ abstract class ProfileDao : BaseDao<InstagramProfile>() {
     @Query("SELECT * FROM InstagramProfile ORDER BY username")
     abstract fun getAll(): Flow<List<InstagramProfile>>
 
-    @Query("SELECT * FROM InstagramProfile")
+    @Query("SELECT * FROM InstagramProfile ORDER BY username")
     abstract fun getAllDirect(): List<InstagramProfile>
 
     @Query("SELECT * FROM InstagramProfile WHERE id = :userId")
@@ -32,6 +32,9 @@ abstract class ProfileDao : BaseDao<InstagramProfile>() {
 
     @Query("SELECT * FROM InstagramProfile WHERE selected = 1")
     abstract fun getCurrent(): Flow<InstagramProfile?>
+
+    @Query("SELECT * FROM InstagramProfile WHERE selected = 1")
+    abstract suspend fun getCurrentDirect(): InstagramProfile?
 
     @Update(entity = InstagramProfile::class, onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun update(partial: InstagramProfilePartial)

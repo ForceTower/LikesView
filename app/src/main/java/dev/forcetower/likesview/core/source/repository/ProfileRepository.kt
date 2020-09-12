@@ -86,10 +86,16 @@ class ProfileRepository @Inject constructor(
     suspend fun onDeleteProfile(profile: InstagramProfile): Boolean {
         return database.withTransaction {
             val all = database.profile().getAllDirect().filter { it.id != profile.id }
+            var next = database.profile().getCurrentDirect()
+
+            if (next?.id == profile.id) {
+                next = all.firstOrNull()
+            }
+
             database.profile().delete(profile)
-            val first = all.firstOrNull()
-            if (first != null) { database.profile().markSelected(first.username) }
-            first != null
+
+            if (next != null) { database.profile().markSelected(next.username) }
+            next != null
         }
     }
 
