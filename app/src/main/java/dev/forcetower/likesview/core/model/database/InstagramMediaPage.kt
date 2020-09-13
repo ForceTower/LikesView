@@ -8,5 +8,6 @@ data class InstagramMediaPage(
     @PrimaryKey
     val id: Int,
     val currentPageId: String?,
-    val nextMaxId: String?
+    val nextMaxId: String?,
+    val previousPageId: String?
 )

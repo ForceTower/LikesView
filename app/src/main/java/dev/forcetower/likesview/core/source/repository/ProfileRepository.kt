@@ -37,7 +37,7 @@ class ProfileRepository @Inject constructor(
             }?.limit(3)?.map { it.user } ?: emptyList()
         } catch (error: Throwable) {
             Timber.d(error, "Top search request failed")
-            emptyList<InstagramUserSearch>()
+            emptyList()
         }
     }
 
@@ -53,7 +53,11 @@ class ProfileRepository @Inject constructor(
 
     fun medias(userId: Long): Flow<PagingData<InstagramMedia>> {
         return Pager(
-            config = PagingConfig(12),
+            config = PagingConfig(
+                pageSize = 12,
+                initialLoadSize = 12,
+                enablePlaceholders = true
+            ),
             pagingSourceFactory = { database.media().getMedias(userId) },
             remoteMediator = InstagramMediaRemoteMediator(userId, database, service)
         ).flow

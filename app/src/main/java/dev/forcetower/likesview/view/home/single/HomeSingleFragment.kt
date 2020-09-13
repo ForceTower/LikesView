@@ -119,12 +119,9 @@ class HomeSingleFragment : BaseFragment() {
                 }
             }
         }
-        profileViewModel.profile(userId).observe(
-            viewLifecycleOwner,
-            {
-                header.submitList(listOf(it))
-            }
-        )
+        profileViewModel.profile(userId).observe(viewLifecycleOwner) {
+            header.submitList(listOf(it))
+        }
 
         val columns = resources.getInteger(R.integer.home_profile_media_column)
 
