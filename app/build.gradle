@@ -116,6 +116,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragment"
     implementation "androidx.fragment:fragment-ktx:$fragment"
     implementation "androidx.viewpager2:viewpager2:$view_pager"
+    implementation "androidx.preference:preference-ktx:1.1.1"
 
     // Architecture
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
@@ -132,6 +133,7 @@ dependencies {
 
     // Dependency injection
     implementation "com.google.dagger:hilt-android:$hilt_dagger"
+    implementation 'com.google.firebase:firebase-config-ktx:20.0.0'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_dagger"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
