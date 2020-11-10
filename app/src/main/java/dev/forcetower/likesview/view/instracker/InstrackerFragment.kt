@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.likesview.databinding.FragmentInstrackerOfferBinding
 import timber.log.Timber
 
-
 @AndroidEntryPoint
 class InstrackerFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentInstrackerOfferBinding
