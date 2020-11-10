@@ -54,8 +54,8 @@ class ProfileRepository @Inject constructor(
     fun medias(userId: Long): Flow<PagingData<InstagramMedia>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 12,
-                initialLoadSize = 12,
+                pageSize = 30,
+                initialLoadSize = 30,
                 enablePlaceholders = true
             ),
             pagingSourceFactory = { database.media().getMedias(userId) },
