@@ -91,9 +91,9 @@ play {
     def publishTrack = "internal"
     if (branch == "master") publishTrack = "production"
 
-    serviceAccountCredentials rootProject.file("play_publisher.json")
-    track publishTrack
-    defaultToAppBundles true
+    serviceAccountCredentials.set(rootProject.file("play_publisher.json"))
+    track.set(publishTrack)
+    defaultToAppBundles.set(true)
 }
 
 
@@ -111,9 +111,9 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation "com.google.android.material:material:$google_material"
-    implementation "androidx.recyclerview:recyclerview:1.2.0-alpha05"
-    implementation "androidx.palette:palette:$pallete"
-    implementation "androidx.fragment:fragment:$fragment"
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
+    implementation "androidx.palette:palette-ktx:$pallete"
+    implementation "androidx.fragment:fragment-ktx:$fragment"
     implementation "androidx.fragment:fragment-ktx:$fragment"
     implementation "androidx.viewpager2:viewpager2:$view_pager"
 
@@ -124,13 +124,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle"
 
-    implementation "androidx.navigation:navigation-ui:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
-    implementation "androidx.navigation:navigation-fragment:$navigation"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
 
     // Paging
-    implementation "androidx.paging:paging-runtime:$paging"
     implementation "androidx.paging:paging-runtime-ktx:$paging"
 
     // Dependency injection
@@ -158,9 +155,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glide"
 
-    implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
-    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.6.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
+    implementation 'com.google.firebase:firebase-messaging:20.3.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

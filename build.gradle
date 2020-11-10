@@ -2,10 +2,10 @@
 buildscript {
     ext.kotlin_version = "1.4.10"
     ext {
-        ktx = '1.5.0-alpha02'
+        ktx = '1.5.0-alpha04'
         app_compat = '1.2.0'
         google_material = '1.2.1'
-        constraint_layout = '2.0.1'
+        constraint_layout = '2.0.2'
         annotation = "1.1.0"
         exif_interface = "1.1.0"
         pallete = "1.0.0"
@@ -17,8 +17,8 @@ buildscript {
         // Architecture
         room = '2.3.0-alpha02'
         lifecycle = '2.2.0'
-        paging = '3.0.0-alpha06'
-        navigation = '2.3.0'
+        paging = '3.0.0-alpha07'
+        navigation = '2.3.1'
 
         // Dependency Injection
         dagger = '2.28'
@@ -31,17 +31,17 @@ buildscript {
         lottie = '3.3.1'
 
         // Networking
-        okhttp = '4.8.1'
+        okhttp = '4.9.0'
         retrofit = '2.9.0'
 
         // Others
         gson = '2.8.6'
 
         // Build Versions
-        android_gradle_plugin = '4.0.1'
+        android_gradle_plugin = '4.1.0'
         kotlinter = "3.0.2"
-        hilt_dagger = '2.28.3-alpha'
-        play_publisher = "2.7.1"
+        hilt_dagger = '2.29.1-alpha'
+        play_publisher = "3.0.0"
     }
     repositories {
         google()
@@ -56,8 +56,8 @@ buildscript {
         classpath "org.jmailen.gradle:kotlinter-gradle:$kotlinter"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_dagger"
-        classpath 'com.google.gms:google-services:4.3.3'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.2.1'
+        classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
     }
 }
 
