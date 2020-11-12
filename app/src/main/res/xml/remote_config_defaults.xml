@@ -2,6 +2,6 @@
 <defaultsMap>
     <entry>
         <key>show_instracking_offer_flag</key>
-        <value>true</value>
+        <value>false</value>
     </entry>
 </defaultsMap>
