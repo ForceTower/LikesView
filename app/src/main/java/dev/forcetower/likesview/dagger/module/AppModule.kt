@@ -1,7 +1,11 @@
 package dev.forcetower.likesview.dagger.module
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.webkit.WebSettings
+import androidx.preference.PreferenceManager
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -12,10 +16,13 @@ import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.forcetower.likesview.BuildConfig
 import dev.forcetower.likesview.LikeApp
+import dev.forcetower.likesview.R
+import dev.forcetower.likesview.dagger.annotations.ShowInstrackerOfferFlag
 import dev.forcetower.toolkit.network.MemoryCookieJar
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -82,4 +89,35 @@ object AppModule {
     @Reusable
     @Named("WebViewUA")
     fun provideWebViewUserAgent(@ApplicationContext context: Context): String = WebSettings.getDefaultUserAgent(context)
+
+    @Provides
+    @Reusable
+    fun provideRemoteConfig(): FirebaseRemoteConfig {
+        val config = FirebaseRemoteConfig.getInstance()
+        val settings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(900L)
+            .setFetchTimeoutInSeconds(900L)
+            .build()
+
+        config.setConfigSettingsAsync(settings)
+        config.setDefaultsAsync(R.xml.remote_config_defaults)
+        config.fetchAndActivate().addOnCompleteListener {
+            if (!it.isSuccessful) {
+                Timber.d("Failed to init remote config")
+            }
+        }
+        return config
+    }
+
+    @Provides
+    @ShowInstrackerOfferFlag
+    fun provideShowInstrackerFrag(config: FirebaseRemoteConfig): Boolean {
+        return config.getBoolean("show_instracking_offer_flag")
+    }
+
+    @Provides
+    @Reusable
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+    }
 }

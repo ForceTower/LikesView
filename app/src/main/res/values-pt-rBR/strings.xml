@@ -19,4 +19,8 @@
     <string name="remove_profile_exp">Você tem certeza que deseja remover o perfil da sua lista? Ele poderá ser adicionado novamente quando você quiser</string>
     <string name="remove_profile_cancel">Cancelar</string>
     <string name="remove_profile_continue">Remover</string>
+    <string name="instracker_offer_title">Instracking</string>
+    <string name="see_app">Ver aplicativo</string>
+    <string name="instracker_offer_base">Analise de Postagens, Stories, Seguidores Fantasmas e muito mais!</string>
+    <string name="instracker_offer_subtitle">Veja todas as informações relevantes do seu perfil em uma das maiores redes sociais do mundo!</string>
 </resources>

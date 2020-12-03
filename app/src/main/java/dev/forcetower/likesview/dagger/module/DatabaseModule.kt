@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.forcetower.likesview.core.source.local.LikeDB
+import dev.forcetower.likesview.core.source.local.migrations.Migrations
 import javax.inject.Singleton
 
 @Module
@@ -17,6 +18,7 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): LikeDB {
         return Room.databaseBuilder(context, LikeDB::class.java, "likes_test.db")
+            .addMigrations(Migrations.M2TO3)
             .build()
     }
 }

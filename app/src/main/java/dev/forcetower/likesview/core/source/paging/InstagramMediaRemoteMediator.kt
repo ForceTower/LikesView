@@ -12,6 +12,7 @@ import dev.forcetower.likesview.core.source.local.LikeDB
 import dev.forcetower.likesview.core.source.remote.InstagramAPI
 import retrofit2.HttpException
 import timber.log.Timber
+import kotlin.coroutines.cancellation.CancellationException
 
 @OptIn(ExperimentalPagingApi::class)
 class InstagramMediaRemoteMediator(
@@ -19,22 +20,21 @@ class InstagramMediaRemoteMediator(
     private val database: LikeDB,
     private val service: InstagramAPI
 ) : RemoteMediator<Int, InstagramMedia>() {
+    @ExperimentalStdlibApi
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, InstagramMedia>
     ): MediatorResult {
 
         val page: String? = when (loadType) {
-            // start from scratch
-            LoadType.REFRESH -> {
-                getRemoteKeyClosestToCurrentPosition(state)?.currentPageId
-            }
-            LoadType.PREPEND -> {
-                return MediatorResult.Success(endOfPaginationReached = true)
-            }
-            // continue
             LoadType.APPEND -> {
                 getRemoteKeyForLastItem(state)?.nextMaxId
+                    ?: return MediatorResult.Success(true)
+            }
+            LoadType.REFRESH -> getRemoteKeyClosestToCurrentPosition(state)?.currentPageId
+            LoadType.PREPEND -> {
+                getRemoteKeyForFirstItem(state)?.previousPageId
+                    ?: return MediatorResult.Success(true)
             }
         }
 
@@ -45,25 +45,36 @@ class InstagramMediaRemoteMediator(
             val pageInfo = user?.edgeMedia?.pageInfo
             val nextPage = pageInfo?.endCursor
             val medias = InstagramMedia.getMediaListFromProfileFetch(response, 120)
-            val endOfPaginationReached = medias.isEmpty()
+            Timber.d("Next page: $nextPage")
+            val endOfPaginationReached = medias.isEmpty() || nextPage == null
 
             database.withTransaction {
                 // clear all tables in the database
                 if (loadType == LoadType.REFRESH) {
-                    database.mediaPage().deleteAll()
-                    database.media().deleteAll()
+                    val ids = database.media().getUserMediaIds(userId)
+                    database.media().deleteAll(userId)
+                    database.mediaPage().deleteAll(ids)
                 }
 
+                val previousPage = database.mediaPage().getPreviousPage(page)
                 val keys = medias.map {
-                    InstagramMediaPage(id = it.id, currentPageId = page, nextMaxId = nextPage)
+                    InstagramMediaPage(id = it.id, currentPageId = page, nextMaxId = nextPage, previousPage)
                 }
                 database.mediaPage().insertAll(keys)
                 database.media().insertAll(medias)
                 Timber.d("Inserted ${medias.size} medias")
             }
-            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
+            Timber.d("Load type: $loadType ---> Page $page")
+            if (page == null && loadType != LoadType.REFRESH) {
+                return MediatorResult.Success(true)
+            }
+            return MediatorResult.Success(endOfPaginationReached)
         } catch (error: HttpException) {
             Timber.e(error, "Error during fetch")
+            return MediatorResult.Error(error)
+        } catch (error: CancellationException) {
+            Timber.e(error.cause)
+            Timber.e(error, "Error during fetch cancelled $page")
             return MediatorResult.Error(error)
         } catch (error: Throwable) {
             Timber.e(error, "Error during fetch of page $page")
