@@ -25,7 +25,6 @@ class InstagramMediaRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, InstagramMedia>
     ): MediatorResult {
-
         val page: String? = when (loadType) {
             LoadType.APPEND -> {
                 getRemoteKeyForLastItem(state)?.nextMaxId

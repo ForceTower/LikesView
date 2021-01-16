@@ -41,7 +41,7 @@
             app:layout_constraintEnd_toEndOf="@id/image"
             app:layout_constraintBottom_toBottomOf="@id/image"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/media_gallery_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="@id/image"
             tools:visibility="gone"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/media_video_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -78,12 +78,12 @@
             android:gravity="center"
             tools:ignore="UseCompoundDrawables">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/icon_likes"
-                android:tint="@android:color/white"/>
+                app:tint="@android:color/white"/>
 
             <TextView
                 android:id="@+id/likes_text"

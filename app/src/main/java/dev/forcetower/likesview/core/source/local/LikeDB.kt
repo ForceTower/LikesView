@@ -16,7 +16,7 @@ import dev.forcetower.likesview.core.source.local.dao.ProfileDao
         InstagramMedia::class,
         InstagramMediaPage::class
     ],
-    version = 3
+    version = 4
 )
 @TypeConverters(
     value = [

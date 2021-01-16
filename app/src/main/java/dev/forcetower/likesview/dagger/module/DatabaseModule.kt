@@ -18,7 +18,7 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): LikeDB {
         return Room.databaseBuilder(context, LikeDB::class.java, "likes_test.db")
-            .addMigrations(Migrations.M2TO3)
+            .addMigrations(Migrations.M2TO3, Migrations.M3TO4)
             .build()
     }
 }

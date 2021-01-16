@@ -38,6 +38,7 @@ data class InstagramMedia(
     val dimensionWidth: Int,
     val dimensionHeight: Int,
     val lastUpdated: Long,
+    val mediaPreview: String?,
     val contents: GalleryContent
 ) {
     @Ignore
@@ -69,6 +70,7 @@ data class InstagramMedia(
                 node.dimensions?.width ?: 1,
                 node.dimensions?.height ?: 1,
                 Calendar.getInstance().timeInMillis,
+                node.mediaPreview,
                 createDefault(node.displayUrl)
             )
         }

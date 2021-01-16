@@ -124,7 +124,7 @@ class HomeSingleFragment : BaseFragment() {
         viewModel.onMediaClicked.observe(
             viewLifecycleOwner,
             EventObserver {
-                val directions = HomeSingleFragmentDirections.actionHomeToMedias(it.profileId)
+                val directions = HomeSingleFragmentDirections.actionHomeToMedias(it.profileId, it.id)
                 findNavController().navigate(directions)
             }
         )

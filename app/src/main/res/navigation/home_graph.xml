@@ -70,5 +70,8 @@
         <argument
             android:name="profileId"
             app:argType="long" />
+        <argument
+            android:name="mediaIdStart"
+            app:argType="integer" />
     </fragment>
 </navigation>

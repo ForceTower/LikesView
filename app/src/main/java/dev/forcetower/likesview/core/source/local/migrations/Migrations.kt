@@ -10,4 +10,10 @@ object Migrations {
             database.execSQL("ALTER TABLE InstagramMediaPage ADD COLUMN previousPageId TEXT DEFAULT NULL")
         }
     }
+
+    val M3TO4 = object : Migration(3, 4) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("ALTER TABLE InstagramMedia ADD COLUMN mediaPreview TEXT DEFAULT NULL")
+        }
+    }
 }

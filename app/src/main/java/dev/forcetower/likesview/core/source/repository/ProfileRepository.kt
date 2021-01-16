@@ -53,13 +53,14 @@ class ProfileRepository @Inject constructor(
     }
 
     @ExperimentalPagingApi
-    fun medias(userId: Long): Flow<PagingData<InstagramMedia>> {
+    fun medias(userId: Long, initialHint: Int? = null): Flow<PagingData<InstagramMedia>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 30,
                 initialLoadSize = 30,
                 enablePlaceholders = true
             ),
+            initialKey = initialHint,
             pagingSourceFactory = { database.media().getMedias(userId) },
             remoteMediator = InstagramMediaRemoteMediator(userId, database, service)
         ).flow
