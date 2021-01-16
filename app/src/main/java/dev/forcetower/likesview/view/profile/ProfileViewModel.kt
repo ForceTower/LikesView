@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dev.forcetower.likesview.core.model.database.InstagramMedia
@@ -20,6 +21,7 @@ class ProfileViewModel @ViewModelInject constructor(
     private var media: Flow<PagingData<InstagramMedia>>? = null
     private var profile: LiveData<InstagramProfile?>? = null
 
+    @ExperimentalPagingApi
     fun media(userId: Long): Flow<PagingData<InstagramMedia>> {
         val currentMedia = media
         if (this.mediaUserId == userId && currentMedia != null) return currentMedia

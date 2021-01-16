@@ -1,6 +1,7 @@
 package dev.forcetower.likesview.core.source.repository
 
 import androidx.lifecycle.liveData
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -51,6 +52,7 @@ class ProfileRepository @Inject constructor(
         }
     }
 
+    @ExperimentalPagingApi
     fun medias(userId: Long): Flow<PagingData<InstagramMedia>> {
         return Pager(
             config = PagingConfig(

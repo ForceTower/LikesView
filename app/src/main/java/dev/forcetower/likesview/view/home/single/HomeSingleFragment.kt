@@ -1,5 +1,6 @@
 package dev.forcetower.likesview.view.home.single
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
@@ -59,6 +61,7 @@ class HomeSingleFragment : BaseFragment() {
         }.root
     }
 
+    @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -119,6 +122,7 @@ class HomeSingleFragment : BaseFragment() {
         )
     }
 
+    @ExperimentalPagingApi
     private fun loadProfile(profile: InstagramProfile) {
         Timber.d("Call to load profile... ${profile.username}")
         val medias = MediaAdapter()
@@ -158,6 +162,7 @@ class HomeSingleFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private fun prepareShowNewAppOffer() {
         val applications = requireContext().packageManager.getInstalledApplications(0)
         val installed = applications.any { it.packageName == "dev.forcetower.instracker" }

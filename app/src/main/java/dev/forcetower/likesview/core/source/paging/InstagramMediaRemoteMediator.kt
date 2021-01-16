@@ -20,7 +20,7 @@ class InstagramMediaRemoteMediator(
     private val database: LikeDB,
     private val service: InstagramAPI
 ) : RemoteMediator<Int, InstagramMedia>() {
-    @ExperimentalStdlibApi
+
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, InstagramMedia>

@@ -111,7 +111,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation "com.google.android.material:material:$google_material"
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
     implementation "androidx.palette:palette-ktx:$pallete"
     implementation "androidx.fragment:fragment-ktx:$fragment"
     implementation "androidx.fragment:fragment-ktx:$fragment"
@@ -133,7 +133,7 @@ dependencies {
 
     // Dependency injection
     implementation "com.google.dagger:hilt-android:$hilt_dagger"
-    implementation 'com.google.firebase:firebase-config-ktx:20.0.0'
+    implementation 'com.google.firebase:firebase-config-ktx:20.0.2'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_dagger"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
@@ -158,10 +158,10 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide"
 
     implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
-    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
