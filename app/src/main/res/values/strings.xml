@@ -25,4 +25,6 @@
     <string name="see_app">See app</string>
     <string name="instracker_offer_base">Post and Story insights, Ghost Followers and more</string>
     <string name="instracker_offer_subtitle">Get relevant information about your profile in one of the greatest social networks of the World!</string>
+    <string name="like_amount_media_details">Likes</string>
+    <string name="like_count_format" translatable="false">%1$d</string>
 </resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="media"
+            type="dev.forcetower.likesview.core.model.database.InstagramMedia" />
+    </data>
+
+    <merge tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/spacing_common"
+            android:layout_marginEnd="@dimen/spacing_common"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="@{media.caption}"
+            app:layout_constraintTop_toBottomOf="@id/content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Essa é a legenda da foto da Juliana.  O Instagram não limita o número de linhas possiveis para as coisas, mas nós precisamos"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_common"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textFontWeight="500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/caption"
+            tools:text="Há 2 dias" />
+
+        <View
+            android:id="@+id/content_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/timestamp"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/im_like"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="8dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/icon_likes"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@id/like_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/content_divider"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/like_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            app:textNumberWithK="@{media.likes}"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textFontWeight="600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/im_like"
+            app:layout_constraintTop_toTopOf="@id/im_like"
+            app:layout_constraintBottom_toBottomOf="@id/im_like"
+            tools:text="88.4k"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:text="@string/like_amount_media_details"
+            android:textSize="14sp"
+            android:textFontWeight="500"
+            android:textColor="?android:attr/textColorTertiary"
+            app:layout_constraintTop_toBottomOf="@id/like_amount"
+            app:layout_constraintStart_toStartOf="@id/im_like"
+            app:layout_constraintEnd_toEndOf="@id/like_amount" />
+    </merge>
+</layout>

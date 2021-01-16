@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="media"
+            type="dev.forcetower.likesview.core.model.database.InstagramMedia" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:adjustViewBounds="true"
+            app:imageUrl="@{media.displayUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintDimensionRatio="1:1"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <include
+            android:id="@+id/information"
+            app:media="@{media}"
+            layout="@layout/merge_media_details_common" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

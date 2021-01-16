@@ -38,7 +38,7 @@ class ProfileFragment : BaseFragment() {
     @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val medias = MediaAdapter()
+        val medias = MediaAdapter(viewModel)
         val header = HeaderAdapter()
 
         val adapter = ConcatAdapter(header, medias)

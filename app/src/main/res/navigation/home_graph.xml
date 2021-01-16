@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_home_to_remove_profile"
             app:destination="@id/remove_profile" />
+        <action
+            android:id="@+id/action_home_to_medias"
+            app:destination="@id/medias" />
     </fragment>
     <fragment
         android:id="@+id/remove_profile"
@@ -58,5 +61,14 @@
         <argument
             android:name="profile"
             app:argType="dev.forcetower.likesview.core.model.database.InstagramProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/medias"
+        android:name="dev.forcetower.likesview.view.medias.MediasFragment"
+        android:label="Medias"
+        tools:layout="@layout/fragment_medias">
+        <argument
+            android:name="profileId"
+            app:argType="long" />
     </fragment>
 </navigation>

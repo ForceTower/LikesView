@@ -10,11 +10,13 @@ import androidx.paging.cachedIn
 import dev.forcetower.likesview.core.model.database.InstagramMedia
 import dev.forcetower.likesview.core.model.database.InstagramProfile
 import dev.forcetower.likesview.core.source.repository.ProfileRepository
+import dev.forcetower.likesview.view.home.MediaActions
 import kotlinx.coroutines.flow.Flow
+import timber.log.Timber
 
 class ProfileViewModel @ViewModelInject constructor(
     private val repository: ProfileRepository
-) : ViewModel() {
+) : ViewModel(), MediaActions {
     private var mediaUserId: Long? = null
     private var profileUserId: Long? = null
 
@@ -38,5 +40,9 @@ class ProfileViewModel @ViewModelInject constructor(
         val newProfile = repository.profile(userId)
         this.profile = newProfile
         return newProfile
+    }
+
+    override fun onMediaClicked(media: InstagramMedia?) {
+        Timber.e("no-op")
     }
 }

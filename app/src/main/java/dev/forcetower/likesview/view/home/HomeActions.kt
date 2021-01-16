@@ -1,5 +1,6 @@
 package dev.forcetower.likesview.view.home
 
+import dev.forcetower.likesview.core.model.database.InstagramMedia
 import dev.forcetower.likesview.core.model.database.InstagramProfile
 
 interface HomeActions {

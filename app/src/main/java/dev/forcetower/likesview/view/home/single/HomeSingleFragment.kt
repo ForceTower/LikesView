@@ -55,7 +55,7 @@ class HomeSingleFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return FragmentHomeSingleBinding.inflate(inflater, container, false).also {
             binding = it
         }.root
@@ -120,12 +120,20 @@ class HomeSingleFragment : BaseFragment() {
                 sheet.show(childFragmentManager, "remove_profile")
             }
         )
+
+        viewModel.onMediaClicked.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                val directions = HomeSingleFragmentDirections.actionHomeToMedias(it.profileId)
+                findNavController().navigate(directions)
+            }
+        )
     }
 
     @ExperimentalPagingApi
     private fun loadProfile(profile: InstagramProfile) {
         Timber.d("Call to load profile... ${profile.username}")
-        val medias = MediaAdapter()
+        val medias = MediaAdapter(viewModel)
         val header = HeaderAdapter()
 
         val adapter = ConcatAdapter(header, medias)

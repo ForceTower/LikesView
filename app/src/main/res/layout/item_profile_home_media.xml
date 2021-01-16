@@ -8,13 +8,14 @@
             type="dev.forcetower.likesview.core.model.database.InstagramMedia" />
         <variable
             name="actions"
-            type="dev.forcetower.likesview.view.home.HomeActions" />
+            type="dev.forcetower.likesview.view.home.MediaActions" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
+        android:onClick="@{() -> actions.onMediaClicked(media)}"
         app:roundedViewRadius="@{4}">
 
         <ImageView
